@@ -18,15 +18,17 @@ function FetchData() {
     };
     useEffect(() => {
 
-        const tickers = ['AAPL', 'MSFT', 'TSLA', 'AMZN', 'META'];
+        const tickers = ['AAPL', 'TSLA', 'AMZN', 'META', 'MSFT'];
         const today = new Date();
+        console.log(today);
         const yesterday = new Date(today);
 
-        yesterday.setDate(today.getDate() - 1);
+        yesterday.setDate(today.getDate() - 2);
 
         const formattedDate = yesterday.toISOString().split('T')[0];
         async function fetchDataForTicker(ticker) {
             try {
+                // const apiUrl = `https://api.polygon.io/v1/open-close/${ticker}/${formattedDate}?adjusted=true&apiKey=CMR_FkWnAp6dxrd1FZ7BOqdD6XlYjlac`;
                 const apiUrl = `https://api.polygon.io/v1/open-close/${ticker}/${formattedDate}?adjusted=true&apiKey=CMR_FkWnAp6dxrd1FZ7BOqdD6XlYjlac`;
                 const request = await axios.get(apiUrl);
                 return {
